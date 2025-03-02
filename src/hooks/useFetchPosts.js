@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 function useFetchPosts(){
@@ -6,6 +6,7 @@ function useFetchPosts(){
     const [isLoading,setIsLoading] = useState(true)
     const [isError,setIsError] =useState(false)
 
+    useEffect(()=>{
     fetch("https://jsonplaceholder.typicode.com/posts")
     .then((response)=>response.json())
     .then((data)=>{
@@ -15,6 +16,9 @@ function useFetchPosts(){
                     setIsError(true)
                     isLoading(false)})
 
-        return {posts,isLoading,isError}
+    
+                    return {posts,isLoading,isError}
+ },[] )
 }
+
 export default useFetchPosts
